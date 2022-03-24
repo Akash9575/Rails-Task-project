@@ -33,16 +33,16 @@ class User < ApplicationRecord
   validates :phone_num, comparison: { greater_than: :pincode }
 
 
-  # validates :password, numericality: true
+  validates :password, numericality: true
 
   validates :password, numericality: { only_integer: true }
 
   validates :name, uniqueness: true
-  # validates :name, uniqueness: {message: "name is already taken"}
+  validates :name, uniqueness: {message: "name is already taken"}
 
 
 
-  # validates :name,  absence: {message: "name must be empty"} #check if filed is empty or not
+  validates :name,  absence: {message: "name must be empty"} #check if filed is empty or not
     
   validates_each :name, :city do |record, attr, value|
     record.errors.add(attr, 'must start with upper case') if value =~ /\A[[:lower:]]/
